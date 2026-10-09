@@ -1,5 +1,5 @@
 ---
-# Flight mode will be disabled when the player teleports the worlds listed below.
+# Flight will be disabled after a player teleports into a listed world.
 NoFlyWorld: []
 # NoFlyWorld: ["world name", "pvp", "boss", "dungeon"]
 ...

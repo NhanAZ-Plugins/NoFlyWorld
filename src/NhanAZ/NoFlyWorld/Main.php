@@ -10,27 +10,41 @@ use pocketmine\permission\DefaultPermissions;
 use pocketmine\player\GameMode;
 use pocketmine\player\Player;
 use pocketmine\plugin\PluginBase;
+use pocketmine\scheduler\ClosureTask;
 
 class Main extends PluginBase implements Listener {
 
+	private FlightPolicy $policy;
+
 	protected function onEnable(): void {
-		$this->getServer()->getPluginManager()->registerEvents($this, $this);
 		$this->saveDefaultConfig();
+		try {
+			$this->policy = FlightPolicy::fromConfig($this->getConfig()->get("NoFlyWorld"));
+		} catch (\InvalidArgumentException $e) {
+			$this->getLogger()->error($e->getMessage());
+			$this->getServer()->getPluginManager()->disablePlugin($this);
+			return;
+		}
+		$this->getServer()->getPluginManager()->registerEvents($this, $this);
 	}
 
 	public function onEntityTeleport(EntityTeleportEvent $event): void {
 		$entity = $event->getEntity();
 		if ($entity instanceof Player) {
-			$player = $entity;
-			$to = $event->getTo();
-			$toWorld = $to->getWorld();
-			$isAdmin = $player->hasPermission("noflyworld.bypass") || $player->hasPermission(DefaultPermissions::ROOT_OPERATOR) || $player->getGamemode()->equals(GameMode::CREATIVE());
-			$noFlyWorld = $this->getConfig()->get("NoFlyWorld");
-			$isNoFlyWorld = in_array($toWorld->getDisplayName(), $noFlyWorld) || in_array($toWorld->getFolderName(), $noFlyWorld);
-			if ($isNoFlyWorld && ($player->isFlying() || $player->getAllowFlight()) && !$isAdmin) {
-				$player->setFlying(false);
-				$player->setAllowFlight(false);
-			}
+			$this->getScheduler()->scheduleDelayedTask(new ClosureTask(function() use ($entity): void {
+				if ($entity->isConnected()) {
+					$this->applyPolicy($entity);
+				}
+			}), 1);
+		}
+	}
+
+	private function applyPolicy(Player $player): void {
+		$world = $player->getWorld();
+		$isAdmin = $player->hasPermission("noflyworld.bypass") || $player->hasPermission(DefaultPermissions::ROOT_OPERATOR) || $player->getGamemode()->equals(GameMode::CREATIVE());
+		if (!$isAdmin && $this->policy->isRestricted($world->getDisplayName(), $world->getFolderName()) && ($player->isFlying() || $player->getAllowFlight())) {
+			$player->setFlying(false);
+			$player->setAllowFlight(false);
 		}
 	}
 }
