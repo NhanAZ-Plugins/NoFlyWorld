@@ -8,7 +8,7 @@ NoFlyWorld disables a player's flight after teleporting into a configured Axolot
 - PHP 8.1 or newer, as required by those Axolotl-PM source revisions.
 - No external plugin or runtime library dependency.
 
-The exact release PHAR has been checked for startup on Axolotl-PM 5.49.1. This does not verify flight changes with a Bedrock client.
+The exact release PHAR has been checked on Axolotl-PM 5.49.1 with a connected offline Bedrock protocol client. A canceled teleport left the player in the original world with flight enabled. A successful teleport into a configured world turned off both active flight and permission to fly. The test covers one player and one restricted world. Bypass behavior, other server revisions, and a real game client remain unverified.
 
 ## Installation
 
@@ -30,7 +30,7 @@ After a player teleports into a listed world, NoFlyWorld turns off active flight
 
 The [build workflow](.github/workflows/build.yml) runs world matching tests and PHPStan at maximum level. It then uses [DevTools](https://github.com/NhanAZ/DevTools) to build and inspect a downloadable PHAR. The workflow pins DevTools and Axolotl-PM source to reviewed commits. Run local policy cases with `php tests/flight-policy.php`.
 
-For a local build, use the [DevTools CLI guide](https://github.com/NhanAZ/DevTools/blob/main/docs/cli.md) with this repository as the project directory. A passing PHAR build or clean server startup does not prove the teleport behavior with a Bedrock client.
+For a local build, use the [DevTools CLI guide](https://github.com/NhanAZ/DevTools/blob/main/docs/cli.md) with this repository as the project directory. A passing PHAR build or clean server startup alone does not prove the teleport behavior. The connected test result above is specific to the released PHAR and tested server revision.
 
 ## Support and license
 
