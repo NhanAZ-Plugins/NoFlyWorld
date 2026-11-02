@@ -4,11 +4,11 @@ NoFlyWorld disables a player's flight after teleporting into a configured Axolot
 
 ## Requirements and compatibility
 
-- Axolotl-PM API 5.0.0, as declared in [`plugin.yml`](plugin.yml). PHPStan at maximum level passes against the 5.0.0 and 5.49.1 source revisions. Intermediate releases have not been tested.
+- Axolotl-PM API 5.0.0, as declared in [`plugin.yml`](plugin.yml). PHPStan at maximum level passes against the 5.0.0 and 5.51.1 source revisions. Intermediate releases have not been tested.
 - PHP 8.1 or newer, as required by those Axolotl-PM source revisions.
 - No external plugin or runtime library dependency.
 
-The exact release PHAR has been checked on Axolotl-PM 5.49.1 with a connected offline Bedrock protocol client. A canceled teleport left the player in the original world with flight enabled. A successful teleport into a configured world turned off both active flight and permission to fly. The test covers one player and one restricted world. Bypass behavior, other server revisions, and a real game client remain unverified.
+The exact release PHAR has been checked on Axolotl-PM 5.51.1 with a connected offline Bedrock protocol client. A canceled teleport left the player in the original world with flight enabled. A successful teleport into a configured world turned off both active flight and permission to fly. The test covers one player and one restricted world. Bypass behavior, other server revisions, and a real game client remain unverified.
 
 ## Installation
 
