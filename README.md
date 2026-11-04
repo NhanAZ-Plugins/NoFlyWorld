@@ -1,6 +1,15 @@
 # NoFlyWorld
 
-NoFlyWorld disables a player's flight after teleporting into a configured Axolotl-PM world. It checks the player's actual world on the next server tick, so a canceled or redirected teleport does not apply the destination from an earlier event handler.
+Disable player flight after teleporting into configured Axolotl-PM worlds
+
+[![CI](https://github.com/NhanAZ-Plugins/NoFlyWorld/actions/workflows/build.yml/badge.svg)](https://github.com/NhanAZ-Plugins/NoFlyWorld/actions/workflows/build.yml)
+[![Latest release](https://img.shields.io/github/v/release/NhanAZ-Plugins/NoFlyWorld)](https://github.com/NhanAZ-Plugins/NoFlyWorld/releases/latest)
+[![License](https://img.shields.io/github/license/NhanAZ-Plugins/NoFlyWorld)](https://github.com/NhanAZ-Plugins/NoFlyWorld/blob/master/LICENSE)
+[![Discord](https://img.shields.io/discord/986553214889517088?label=Discord&logo=discord&logoColor=white&color=5865F2)](https://discord.gg/j2X83ujT6c)
+
+## Overview
+
+This plugin targets the PocketMine-MP and Axolotl-PM API 5 ecosystem and is maintained under [NhanAZ-Plugins](https://github.com/NhanAZ-Plugins).
 
 ## Requirements and compatibility
 
