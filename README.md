@@ -34,9 +34,9 @@ After a player teleports into a listed world, NoFlyWorld turns off active flight
 
 ## Build and verification
 
-The [build workflow](.github/workflows/build.yml) runs world matching tests and PHPStan at maximum level. It then uses [DevTools](https://github.com/NhanAZ/DevTools) to build and inspect a downloadable PHAR. The workflow pins DevTools and Axolotl-PM source to reviewed commits. Run local policy cases with `php tests/flight-policy.php`.
+The [build workflow](.github/workflows/build.yml) runs world matching tests and PHPStan at maximum level. It then uses [DevTools](https://github.com/AxolotlBucketLabs/DevTools) to build and inspect a downloadable PHAR. The workflow pins DevTools and Axolotl-PM source to reviewed commits. Run local policy cases with `php tests/flight-policy.php`.
 
-For a local build, use the [DevTools CLI guide](https://github.com/NhanAZ/DevTools/blob/main/docs/cli.md) with this repository as the project directory. A passing PHAR build or clean server startup alone does not prove the teleport behavior. The connected test result above is specific to the released PHAR and tested server revision.
+For a local build, use the [DevTools CLI guide](https://github.com/AxolotlBucketLabs/DevTools/blob/main/docs/cli.md) with this repository as the project directory. A passing PHAR build or clean server startup alone does not prove the teleport behavior. The connected test result above is specific to the released PHAR and tested server revision.
 
 ## Support and license
 
